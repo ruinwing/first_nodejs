@@ -1,20 +1,18 @@
-function start(){
+function start(response){
   console.log("Request handler 'start' was called.");
+  setTimeout(function(){
+    response.writeHead(200, {"Content-Type" : "text/plain"});
+    response.write("hello Start");
+    response.end();
+  }, 10000);
 
-  function sleep(milliSeconds){
-    var startTime = new Date().getTime();
-    while(new Date().getTime() < startTime + milliSeconds);
-  }
-  // 10초간 기다려!
-  sleep(10000);
-
-  // 이 함수가 리턴 할 때까지 서버가 기다린다.
-  return "Hello, World!";
 }
 
-function hello(){
+function hello(response){
   console.log("Request handler 'hello' was called.");
-  return "Hello, Everyone!";
+  response.writeHead(200, {"Content-Type" : "text/plain"});
+  response.write("hello, World!");
+  response.end();
 }
 
 exports.start = start;
